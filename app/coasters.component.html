@@ -1,0 +1,12 @@
+<h2>Coasters</h2>
+  <ul class="coasters">
+    <li *ngFor="let coaster of coasters" [class.selected]="coaster === selectedCoaster" (click)="onSelect(coaster)">
+      <span class="badge">{{coaster.id}}</span> {{coaster.name}}
+    </li>
+  </ul>
+  <div *ngIf="selectedCoaster">
+    <h2>
+      {{selectedCoaster.name | uppercase}} is my coaster
+    </h2>
+    <button (click)="gotoDetail()">View Details</button>
+  </div>

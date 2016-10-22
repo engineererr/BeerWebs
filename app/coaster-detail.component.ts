@@ -1,20 +1,33 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
+import { Location }                 from '@angular/common';
+
 import { Coaster } from './coaster'
+import { CoasterService } from './coaster.service';
 
 @Component({
-  selector: 'my-coaster-detail',
-  template: `
-    <div *ngIf="coaster">
-        <h2>{{coaster.name}} details!</h2>
-        <div><label>id: </label>{{coaster.id}}</div>
-        <div>
-        <label>name: </label>
-        <input [(ngModel)]="coaster.name" placeholder="name"/>
-        </div>
-        </div>
-    `
+    moduleId: module.id,
+    selector: 'my-coaster-detail',
+    templateUrl: 'coaster-detail.component.html',
+    styleUrls: ['coaster-detail.component.css']
 })
-export class CoasterDetailComponent {
-    @Input()
+export class CoasterDetailComponent implements OnInit {
+    constructor(
+        private coasterService: CoasterService,
+        private route: ActivatedRoute,
+        private location: Location
+        ) {}
+
+    ngOnInit(): void {
+        this.route.params.forEach((params: Params) => {
+            let id = +params['id'];
+            this.coasterService.getCoaster(id).then(coaster => this.coaster = coaster);
+        });
+    }
+
     coaster : Coaster;
+
+    goBack(): void {
+        this.location.back();
+    }
 }

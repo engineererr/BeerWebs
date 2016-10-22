@@ -1,0 +1,10 @@
+<div *ngIf="coaster">
+  <h2>{{coaster.name}} details!</h2>
+  <div>
+    <label>id: </label>{{coaster.id}}</div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="coaster.name" placeholder="name" />
+  </div>
+  <button (click)="goBack()">Back</button>
+</div>

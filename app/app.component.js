@@ -12,32 +12,17 @@ var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Restaurant Overview';
-        this.coasters = COASTERS;
     }
-    AppComponent.prototype.onSelect = function (coaster) {
-        this.selectedCoaster = coaster;
-    };
     AppComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n  <h1>{{title}}</h1>\n  <h2>Coasters</h2>\n  <ul class=\"coasters\">\n    <li *ngFor=\"let coaster of coasters\" [class.selected]=\"coaster === selectedCoaster\" (click)=\"onSelect(coaster)\">\n      <span class=\"badge\">{{coaster.id}}</span> {{coaster.name}}\n    </li>\n  </ul>\n  <my-coaster-detail [coaster]=\"selectedCoaster\"></my-coaster-detail>\n  ",
-            styles: ["\n  .selected {\n    background-color: #CFD8DC !important;\n    color: white;\n  }\n  .coasters {\n    margin: 0 0 2em 0;\n    list-style-type: none;\n    padding: 0;\n    width: 15em;\n  }\n  .coasters li {\n    cursor: pointer;\n    position: relative;\n    left: 0;\n    background-color: #EEE;\n    margin: .5em;\n    padding: .3em 0;\n    height: 1.6em;\n    border-radius: 4px;\n  }\n  .coasters li.selected:hover {\n    background-color: #BBD8DC !important;\n    color: white;\n  }\n  .coasters li:hover {\n    color: #607D8B;\n    background-color: #DDD;\n    left: .1em;\n  }\n  .coasters .text {\n    position: relative;\n    top: -3px;\n  }\n  .coasters .badge {\n    display: inline-block;\n    font-size: small;\n    color: white;\n    padding: 0.8em 0.7em 0 0.7em;\n    background-color: #607D8B;\n    line-height: 1em;\n    position: relative;\n    left: -1px;\n    top: -4px;\n    height: 1.8em;\n    margin-right: .8em;\n    border-radius: 4px 0 0 4px;\n  }\n"]
+            moduleId: module.id,
+            selector: "my-app",
+            template: "\n        <h1>{{title}}</h1>\n        <nav>\n            <a routerLink=\"/dashboard\" routerLinkActive=\"active\">Dashboard</a>\n            <a routerLink=\"/coasters\" routerLinkActive=\"active\">Coasters</a>\n        </nav>\n        <router-outlet></router-outlet>\n    ",
+            styleUrls: ['app.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
-var COASTERS = [
-    { id: 11, name: 'Mr. Nice' },
-    { id: 12, name: 'Narco' },
-    { id: 13, name: 'Bombasto' },
-    { id: 14, name: 'Celeritas' },
-    { id: 15, name: 'Magneta' },
-    { id: 16, name: 'RubberMan' },
-    { id: 17, name: 'Dynama' },
-    { id: 18, name: 'Dr IQ' },
-    { id: 19, name: 'Magma' },
-    { id: 20, name: 'Tornado' }
-];
 //# sourceMappingURL=app.component.js.map

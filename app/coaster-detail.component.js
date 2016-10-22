@@ -9,20 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var coaster_1 = require('./coaster');
+var router_1 = require('@angular/router');
+var common_1 = require('@angular/common');
+var coaster_service_1 = require('./coaster.service');
 var CoasterDetailComponent = (function () {
-    function CoasterDetailComponent() {
+    function CoasterDetailComponent(coasterService, route, location) {
+        this.coasterService = coasterService;
+        this.route = route;
+        this.location = location;
     }
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', coaster_1.Coaster)
-    ], CoasterDetailComponent.prototype, "coaster", void 0);
+    CoasterDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.forEach(function (params) {
+            var id = +params['id'];
+            _this.coasterService.getCoaster(id).then(function (coaster) { return _this.coaster = coaster; });
+        });
+    };
+    CoasterDetailComponent.prototype.goBack = function () {
+        this.location.back();
+    };
     CoasterDetailComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'my-coaster-detail',
-            template: "\n    <div *ngIf=\"coaster\">\n        <h2>{{coaster.name}} details!</h2>\n        <div><label>id: </label>{{coaster.id}}</div>\n        <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"coaster.name\" placeholder=\"name\"/>\n        </div>\n        </div>\n    "
+            templateUrl: 'coaster-detail.component.html',
+            styleUrls: ['coaster-detail.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [coaster_service_1.CoasterService, router_1.ActivatedRoute, common_1.Location])
     ], CoasterDetailComponent);
     return CoasterDetailComponent;
 }());
