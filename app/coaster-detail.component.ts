@@ -30,4 +30,8 @@ export class CoasterDetailComponent implements OnInit {
     goBack(): void {
         this.location.back();
     }
+
+    save(): void {
+        this.coasterService.update(this.coaster).then(() => this.goBack());
+    }
 }

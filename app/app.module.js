@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+require('./rxjs-extensions');
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
@@ -21,6 +22,7 @@ var dashboard_component_1 = require('./dashboard.component');
 var coaster_detail_component_1 = require('./coaster-detail.component');
 var coasters_component_1 = require('./coasters.component');
 var coaster_service_1 = require('./coaster.service');
+var coaster_search_component_1 = require('./coaster-search.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,7 +39,8 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 dashboard_component_1.DashboardComponent,
                 coaster_detail_component_1.CoasterDetailComponent,
-                coasters_component_1.CoastersComponent
+                coasters_component_1.CoastersComponent,
+                coaster_search_component_1.CoasterSearchComponent
             ],
             providers: [coaster_service_1.CoasterService],
             bootstrap: [app_component_1.AppComponent]

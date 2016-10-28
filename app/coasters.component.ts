@@ -1,8 +1,9 @@
-import { Component }            from '@angular/core';
-import { OnInit }               from '@angular/core';
+import { Component, OnInit }    from '@angular/core';
+import { Router }               from '@angular/router';
+
 import { Coaster }              from './coaster'
 import { CoasterService }       from './coaster.service';
-import { Router }         from '@angular/router';
+
 
 @Component({
   moduleId: module.id,
@@ -15,11 +16,13 @@ export class CoastersComponent implements OnInit{
   coasters: Coaster[];
   selectedCoaster: Coaster;
 
+  constructor(
+    private router: Router, 
+    private coasterService: CoasterService) {  }
+
   ngOnInit(): void {
     this.getCoasters();
   }
-  
-  constructor(private router: Router, private coasterService: CoasterService) {  }
   
   getCoasters(): void {
       this.coasterService.getCoasters().then(coasters => this.coasters = coasters);
@@ -31,5 +34,21 @@ export class CoastersComponent implements OnInit{
 
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedCoaster.id]);
+  }
+
+  add(name: string): void{
+    name = name.trim();
+    if (!name) { return; }
+    this.coasterService.create(name).then(coaster => {
+      this.coasters.push(coaster);
+      this.selectedCoaster = null;
+    });
+  }
+
+  delete(coaster: Coaster): void {
+    this.coasterService.delete(coaster.id).then(() => {
+      this.coasters = this.coasters.filter(c => c !== coaster);
+      if (this.selectedCoaster === coaster) {this.selectedCoaster = null; }
+    });
   }
 }

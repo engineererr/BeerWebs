@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var coaster_service_1 = require('./coaster.service');
 var router_1 = require('@angular/router');
+var coaster_service_1 = require('./coaster.service');
 var CoastersComponent = (function () {
     function CoastersComponent(router, coasterService) {
         this.router = router;
@@ -28,6 +28,26 @@ var CoastersComponent = (function () {
     };
     CoastersComponent.prototype.gotoDetail = function () {
         this.router.navigate(['/detail', this.selectedCoaster.id]);
+    };
+    CoastersComponent.prototype.add = function (name) {
+        var _this = this;
+        name = name.trim();
+        if (!name) {
+            return;
+        }
+        this.coasterService.create(name).then(function (coaster) {
+            _this.coasters.push(coaster);
+            _this.selectedCoaster = null;
+        });
+    };
+    CoastersComponent.prototype.delete = function (coaster) {
+        var _this = this;
+        this.coasterService.delete(coaster.id).then(function () {
+            _this.coasters = _this.coasters.filter(function (c) { return c !== coaster; });
+            if (_this.selectedCoaster === coaster) {
+                _this.selectedCoaster = null;
+            }
+        });
     };
     CoastersComponent = __decorate([
         core_1.Component({

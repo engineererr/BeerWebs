@@ -9,20 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Restaurant Overview';
+var http_1 = require('@angular/http');
+var CoasterSearchService = (function () {
+    function CoasterSearchService(http) {
+        this.http = http;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-app',
-            template: "\n        <h1>{{title}}</h1>\n        <nav>\n            <a routerLink=\"/dashboard\" routerLinkActive=\"active\">Dashboard</a>\n            <a routerLink=\"/coasters\" routerLinkActive=\"active\">Coasters</a>\n        </nav>\n        <router-outlet></router-outlet>\n    ",
-            styleUrls: ['app.component.css']
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    CoasterSearchService.prototype.search = function (term) {
+        return this.http.get("app/coasters/?name=" + term).map(function (r) { return r.json().data; });
+    };
+    CoasterSearchService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], CoasterSearchService);
+    return CoasterSearchService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CoasterSearchService = CoasterSearchService;
+//# sourceMappingURL=coaster-search.service.js.map

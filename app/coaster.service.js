@@ -15,6 +15,7 @@ var CoasterService = (function () {
     function CoasterService(http) {
         this.http = http;
         this.coastersUrl = 'app/coasters';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     CoasterService.prototype.getCoasters = function () {
         return this.http.get(this.coastersUrl)
@@ -35,6 +36,17 @@ var CoasterService = (function () {
     };
     CoasterService.prototype.getCoaster = function (id) {
         return this.getCoasters().then(function (coasters) { return coasters.find(function (coaster) { return coaster.id === id; }); });
+    };
+    CoasterService.prototype.update = function (coaster) {
+        var url = this.coastersUrl + "/" + coaster.id;
+        return this.http.put(url, JSON.stringify(coaster), { headers: this.headers }).toPromise().then(function () { return coaster; }).catch(this.handleError);
+    };
+    CoasterService.prototype.create = function (name) {
+        return this.http.post(this.coastersUrl, JSON.stringify({ name: name }), { headers: this.headers }).toPromise().then(function (res) { return res.json().data; }).catch(this.handleError);
+    };
+    CoasterService.prototype.delete = function (id) {
+        var url = this.coastersUrl + "/" + id;
+        return this.http.delete(url, { headers: this.headers }).toPromise().then(function () { return null; }).catch(this.handleError);
     };
     CoasterService = __decorate([
         core_1.Injectable(), 

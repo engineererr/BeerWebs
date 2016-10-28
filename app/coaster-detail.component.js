@@ -28,6 +28,10 @@ var CoasterDetailComponent = (function () {
     CoasterDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
+    CoasterDetailComponent.prototype.save = function () {
+        var _this = this;
+        this.coasterService.update(this.coaster).then(function () { return _this.goBack(); });
+    };
     CoasterDetailComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

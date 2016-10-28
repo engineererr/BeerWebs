@@ -1,3 +1,5 @@
+import './rxjs-extensions';
+
 import { NgModule }               from '@angular/core';
 import { BrowserModule }          from '@angular/platform-browser';
 import { FormsModule }            from '@angular/forms';
@@ -14,6 +16,7 @@ import { DashboardComponent }     from './dashboard.component';
 import { CoasterDetailComponent } from './coaster-detail.component';
 import { CoastersComponent }      from './coasters.component';
 import { CoasterService }         from './coaster.service';
+import { CoasterSearchComponent } from './coaster-search.component';
 
 @NgModule({
   imports:      [ 
@@ -27,7 +30,8 @@ import { CoasterService }         from './coaster.service';
     AppComponent, 
     DashboardComponent,
     CoasterDetailComponent, 
-    CoastersComponent 
+    CoastersComponent,
+    CoasterSearchComponent 
   ],
   providers: [CoasterService],
   bootstrap: [AppComponent ]

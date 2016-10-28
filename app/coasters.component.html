@@ -1,7 +1,15 @@
 <h2>Coasters</h2>
+<div>
+  <label>Hero name:</label> <input #coasterName />
+  <button (click)="add(coasterName.value); coasterName.value=''">
+    Add
+  </button>
+</div>
   <ul class="coasters">
     <li *ngFor="let coaster of coasters" [class.selected]="coaster === selectedCoaster" (click)="onSelect(coaster)">
-      <span class="badge">{{coaster.id}}</span> {{coaster.name}}
+      <span class="badge">{{coaster.id}}</span> 
+      <span>{{coaster.name}}</span>
+      <button (click)="delete(coaster); $event.stopPropagation()">x</button>
     </li>
   </ul>
   <div *ngIf="selectedCoaster">

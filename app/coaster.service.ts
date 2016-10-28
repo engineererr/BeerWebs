@@ -8,6 +8,7 @@ import { Coaster } from './coaster';
 @Injectable()
 export class CoasterService {
     private coastersUrl = 'app/coasters';
+    private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor (private http: Http) {}
 
@@ -31,6 +32,20 @@ export class CoasterService {
 
     getCoaster(id: number): Promise<Coaster> {
         return this.getCoasters().then(coasters => coasters.find(coaster => coaster.id === id));
+    }
+
+    update(coaster : Coaster): Promise<Coaster> {
+        const url = `${this.coastersUrl}/${coaster.id}`;
+        return this.http.put(url, JSON.stringify(coaster), {headers: this.headers}).toPromise().then(() => coaster).catch(this.handleError);
+    }
+
+    create(name: string): Promise<Coaster> {
+        return this.http.post(this.coastersUrl, JSON.stringify({name: name}), {headers: this.headers}).toPromise().then(res => res.json().data).catch(this.handleError);
+    }
+
+    delete(id: number): Promise<void> {
+        const url = `${this.coastersUrl}/${id}`;
+        return this.http.delete(url, {headers: this.headers}).toPromise().then(() => null).catch(this.handleError);
     }
 
 }
