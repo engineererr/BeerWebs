@@ -17,6 +17,8 @@ import { CoasterDetailComponent } from './coaster-detail.component';
 import { CoastersComponent }      from './coasters.component';
 import { CoasterService }         from './coaster.service';
 import { CoasterSearchComponent } from './coaster-search.component';
+import { BaasService }            from './baas.service';
+import { Configuration }          from './app.constants';
 
 @NgModule({
   imports:      [ 
@@ -33,7 +35,7 @@ import { CoasterSearchComponent } from './coaster-search.component';
     CoastersComponent,
     CoasterSearchComponent 
   ],
-  providers: [CoasterService],
+  providers: [CoasterService, BaasService, Configuration],
   bootstrap: [AppComponent ]
 })
 

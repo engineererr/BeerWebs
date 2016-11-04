@@ -10,7 +10,7 @@ export class CoasterService {
     private coastersUrl = 'app/coasters';
     private headers = new Headers({'Content-Type': 'application/json'});
 
-    constructor (private http: Http) {}
+    constructor (private http: Http) { }
 
     getCoasters(): Promise<Coaster[]> {
         return this.http.get(this.coastersUrl)

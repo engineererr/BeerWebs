@@ -1,4 +1,5 @@
 <h3>Top Coasters</h3>
+<button (click)="login(); $event.stopPropagation()">Login to BaasBox</button>
 <div class="grid grid-pad">
   <div *ngFor="let coaster of coasters" (click)="gotoDetail(coaster)" class="col-1-4">
     <div class="module coaster">

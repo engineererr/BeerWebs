@@ -23,6 +23,8 @@ var coaster_detail_component_1 = require('./coaster-detail.component');
 var coasters_component_1 = require('./coasters.component');
 var coaster_service_1 = require('./coaster.service');
 var coaster_search_component_1 = require('./coaster-search.component');
+var baas_service_1 = require('./baas.service');
+var app_constants_1 = require('./app.constants');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -42,7 +44,7 @@ var AppModule = (function () {
                 coasters_component_1.CoastersComponent,
                 coaster_search_component_1.CoasterSearchComponent
             ],
-            providers: [coaster_service_1.CoasterService],
+            providers: [coaster_service_1.CoasterService, baas_service_1.BaasService, app_constants_1.Configuration],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

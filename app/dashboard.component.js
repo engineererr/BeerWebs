@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var coaster_service_1 = require('./coaster.service');
+var baas_service_1 = require('./baas.service');
 var DashboardComponent = (function () {
-    function DashboardComponent(router, coasterService) {
+    function DashboardComponent(router, coasterService, baasService) {
         this.router = router;
         this.coasterService = coasterService;
+        this.baasService = baasService;
         this.coasters = [];
     }
     DashboardComponent.prototype.ngOnInit = function () {
@@ -25,6 +27,9 @@ var DashboardComponent = (function () {
         var link = ['/detail', coaster.id];
         this.router.navigate(link);
     };
+    DashboardComponent.prototype.login = function () {
+        this.baasService.login("admin", "kugelschreiber", "1234567890").subscribe(function (result) { return console.log("result: " + result); }, function (error) { return console.log("error: " + error); });
+    };
     DashboardComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -32,7 +37,7 @@ var DashboardComponent = (function () {
             templateUrl: 'dashboard.component.html',
             styleUrls: ['dashboard.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, coaster_service_1.CoasterService])
+        __metadata('design:paramtypes', [router_1.Router, coaster_service_1.CoasterService, baas_service_1.BaasService])
     ], DashboardComponent);
     return DashboardComponent;
 }());
